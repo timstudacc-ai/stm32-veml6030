@@ -42,6 +42,11 @@
   */
 int32_t veml6030_read_reg(veml6030_ctx_t *ctx, uint16_t reg, uint16_t *pdata, uint16_t length)
 {
+  if ((ctx == NULL) || (ctx->ReadReg == NULL) || (pdata == NULL))
+  {
+    return -1;
+  }
+
   return ctx->ReadReg(ctx->handle, reg, (uint8_t *)pdata, length);
 }
 
@@ -55,6 +60,10 @@ int32_t veml6030_read_reg(veml6030_ctx_t *ctx, uint16_t reg, uint16_t *pdata, ui
   */
 int32_t veml6030_write_reg(veml6030_ctx_t *ctx, uint16_t reg, uint16_t *pdata, uint16_t length)
 {
+  if ((ctx == NULL) || (ctx->WriteReg == NULL) || (pdata == NULL))
+  {
+    return -1;
+  }
 
   return ctx->WriteReg(ctx->handle, reg, (uint8_t *)pdata, length);
 }
