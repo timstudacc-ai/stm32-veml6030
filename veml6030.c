@@ -531,7 +531,7 @@ int32_t VEML6030_GetValues(VEML6030_Object_t *pObj, uint32_t *Values)
 {
   int32_t ret = VEML6030_OK;
 
-  if (pObj == NULL)
+  if (pObj == NULL || Values == NULL)
   {
     ret = VEML6030_INVALID_PARAM;
   }
@@ -878,11 +878,11 @@ int32_t VEML6030_GetIntStatus(VEML6030_Object_t *pObj,uint32_t *status)
   }
   else
   {
-    if((data &0x8000) == 0x8000)
+    if((data &VEML6030_INT_TH_HIGH) == VEML6030_INT_TH_HIGH)
     {
       *status = VEML6030_INT_TH_HIGH;
     }
-    else if((data &0x4000) == 0x4000)
+    else if((data &VEML6030_INT_TH_LOW) == VEML6030_INT_TH_LOW)
     {
       *status = VEML6030_INT_TH_LOW;
     }

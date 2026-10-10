@@ -39,6 +39,9 @@ extern "C" {
 #define VEML6030_REG_WHITE               0x05
 #define VEML6030_REG_ALS_INT             0x06
 
+/* Interrupt bits constant*/
+#define VEML6030_INT_TH_LOW 0x8000
+#define VEML6030_INT_TH_HIGH 0x4000
 /* ALS gain constants */
 #define VEML6030_CONF_GAIN_1     (0x00 << 11)
 #define VEML6030_CONF_GAIN_2     (0x01 << 11)
