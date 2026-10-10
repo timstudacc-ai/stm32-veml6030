@@ -42,18 +42,7 @@
   */
 int32_t veml6030_read_reg(veml6030_ctx_t *ctx, uint16_t reg, uint16_t *pdata, uint16_t length)
 {
-  int32_t ret;
-  uint16_t tmp;
-
-  ret = ctx->ReadReg(ctx->handle, reg, (uint8_t *)pdata, length);
-
-  if(ret >= 0)
-  {
-    tmp = ((uint16_t)(*pdata >> 8) & 0x00FF);
-    tmp |= ((uint16_t)(*pdata << 8) & 0xFF00);
-    *pdata = tmp;
-  }
-  return ret;
+  return ctx->ReadReg(ctx->handle, reg, (uint8_t *)pdata, length);
 }
 
 /**
@@ -66,11 +55,8 @@ int32_t veml6030_read_reg(veml6030_ctx_t *ctx, uint16_t reg, uint16_t *pdata, ui
   */
 int32_t veml6030_write_reg(veml6030_ctx_t *ctx, uint16_t reg, uint16_t *pdata, uint16_t length)
 {
-  uint16_t tmp;
-  tmp = ((uint16_t)(*pdata >> 8) & 0x00FF);
-  tmp |= ((uint16_t)(*pdata << 8) & 0xFF00);
 
-  return ctx->WriteReg(ctx->handle, reg, (uint8_t *)&tmp, length);
+  return ctx->WriteReg(ctx->handle, reg, (uint8_t *)pdata, length);
 }
 
 /**
