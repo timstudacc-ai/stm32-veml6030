@@ -91,7 +91,7 @@ int32_t VEML6030_RegisterBusIO(VEML6030_Object_t *pObj, VEML6030_IO_t *pIO)
 {
   int32_t ret;
 
-  if (pObj == NULL)
+  if (pObj == NULL || pIO == NULL)
   {
     ret = VEML6030_ERROR;
   }
@@ -109,6 +109,7 @@ int32_t VEML6030_RegisterBusIO(VEML6030_Object_t *pObj, VEML6030_IO_t *pIO)
     pObj->Ctx.ReadReg  = VEML6030_ReadRegWrap;
     pObj->Ctx.WriteReg = VEML6030_WriteRegWrap;
     pObj->Ctx.handle   = pObj;
+    
 
     if (pObj->IO.Init != NULL)
     {
